@@ -1,0 +1,120 @@
+{
+	"variables": [],
+	"info": {
+		"name": "RestAPI",
+		"_postman_id": "fd06cd73-1504-fe87-19b8-bfe76f042fd2",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8080/mondia-restapi/product/43",
+			"request": {
+				"url": "http://localhost:8080/mondia-restapi/product/43",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic bW9uZGlhOm1vbmRpYQ==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"P6\",\n\t\"description\": \"Desc3\",\n\t\"minPrice\": 134.5,\n\t\"maxPrice\": 145.4\n}"
+				},
+				"description": "Delete Product"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/mondia-restapi/product/2",
+			"request": {
+				"url": "http://localhost:8080/mondia-restapi/product/2",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic bW9uZGlhOm1vbmRpYQ==",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get Product by Id (ex:2)"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/mondia-restapi/product/",
+			"request": {
+				"url": "http://localhost:8080/mondia-restapi/product/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic bW9uZGlhOm1vbmRpYQ==",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get all products"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/mondia-restapi/product/",
+			"request": {
+				"url": "http://localhost:8080/mondia-restapi/product/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic bW9uZGlhOm1vbmRpYQ==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"P11\",\n\"description\": \"Desc1\",\n\"minPrice\": 20.5,\n\"maxPrice\": 30.25\n}"
+				},
+				"description": "Create product"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/mondia-restapi/product/1",
+			"request": {
+				"url": "http://localhost:8080/mondia-restapi/product/1",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic bW9uZGlhOm1vbmRpYQ==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"P1\",\n\"description\": \"Desc1\",\n\"minPrice\": 20.5,\n\"maxPrice\": 30.25\n}"
+				},
+				"description": "Update product by Id (ex:1)"
+			},
+			"response": []
+		}
+	]
+}
