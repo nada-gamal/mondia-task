@@ -9,19 +9,19 @@ import eg.com.mondia.restapi.model.Product;
 
 public interface ProductService {
 	
-	Product findById(BigDecimal id);
+	public Product findById(BigDecimal id);
 	
-	Product findByName(String name);
+	public Product findByIdWithService(BigDecimal id);
 	
-	void saveProduct(Product product);
+	public Product findByName(String name);
 	
-	void updateProduct(Product product);
+	public void saveProduct(Product product);
 	
-	void deleteProduct(Product product);
+	public boolean updateProduct(Product product);
+	
+	public boolean deleteProduct(BigDecimal id);
 
-	List<Product> findAllProducts(); 
-	
-	//void deleteAllProducts();
+	public List<Product> findAllProducts(); 
 	
 	public boolean isProductExist(Product Product);
 	

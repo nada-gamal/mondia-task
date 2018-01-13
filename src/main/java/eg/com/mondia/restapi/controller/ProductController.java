@@ -39,7 +39,7 @@ public class ProductController {
 
 	//-------------------Retrieve Single Product--------------------------------------------------------
 	
-	@RequestMapping(value = "/product/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Product> getProduct(@PathVariable("id") long id) {
 		System.out.println("Fetching Product with id " + id);
 		Product product = productService.findById(BigDecimal.valueOf(id));
@@ -49,6 +49,20 @@ public class ProductController {
 		}
 		return new ResponseEntity<Product>(product, HttpStatus.OK);
 	}
+	
+	//-------------------Retrieve Single Product With Services--------------------------------------------------------
+	
+		@RequestMapping(value = "/product/{id}/services", method = RequestMethod.GET)
+		public ResponseEntity<Product> getProductServices(@PathVariable("id") long id) {
+			System.out.println("Fetching Product with id " + id);
+			Product product = productService.findByIdWithService(BigDecimal.valueOf(id));
+			if (product == null) {
+				System.out.println("Product with id " + id + " not found");
+				return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
+			}
+			return new ResponseEntity<Product>(product, HttpStatus.OK);
+		}
+
 
 	
 	
@@ -74,39 +88,26 @@ public class ProductController {
 	//------------------- Update a Product --------------------------------------------------------
 	
 	@RequestMapping(value = "/product/{id}", method = RequestMethod.PUT)
-	public ResponseEntity<Product> updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
+	public ResponseEntity updateProduct(@PathVariable("id") long id, @RequestBody Product product) {
 		System.out.println("Updating Product " + id);
+		product.setId(BigDecimal.valueOf(id));
 		
-		Product currentProduct = productService.findById(BigDecimal.valueOf(id));
-		
-		if (currentProduct==null) {
-			System.out.println("Product with id " + id + " not found");
-			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
-		}
-
-		currentProduct.setName(product.getName());
-		currentProduct.setDescription(product.getDescription());
-		currentProduct.setMinPrice(product.getMinPrice());
-		currentProduct.setMaxPrice(product.getMaxPrice());
-		
-		productService.updateProduct(currentProduct);
-		return new ResponseEntity<Product>(currentProduct, HttpStatus.OK);
+		if(productService.updateProduct(product))
+			return new ResponseEntity<Product>(product, HttpStatus.OK);
+		else
+			return new ResponseEntity<String>("Product with id " + id + " not found", HttpStatus.NOT_FOUND);
 	}
 
 	//------------------- Delete a Product --------------------------------------------------------
 	
 	@RequestMapping(value = "/product/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Product> deleteProduct(@PathVariable("id") long id) {
+	public ResponseEntity<String> deleteProduct(@PathVariable("id") long id) {
 		System.out.println("Fetching & Deleting Product with id " + id);
 
-		Product product = productService.findById(BigDecimal.valueOf(id));
-		if (product == null) {
-			System.out.println("Unable to delete. Product with id " + id + " not found");
-			return new ResponseEntity<Product>(HttpStatus.NOT_FOUND);
-		}
-
-		productService.deleteProduct(product);
-		return new ResponseEntity<Product>(HttpStatus.NO_CONTENT);
+		if(productService.deleteProduct(BigDecimal.valueOf(id)))
+			return new ResponseEntity<String>("Deleted Operator ["+id+"]",HttpStatus.NO_CONTENT);
+		else
+			return new ResponseEntity<String>("Unable to delete Operator with id [" + id + "] not found",HttpStatus.NO_CONTENT);
 	}
 
 	

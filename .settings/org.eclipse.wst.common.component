@@ -4,6 +4,7 @@
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <wb-resource deploy-path="/" source-path="/target/mondia-restapi"/>
         <property name="context-root" value="mondia-restapi"/>
         <property name="java-output-path" value="/mondia-restapi/target/classes"/>
     </wb-module>

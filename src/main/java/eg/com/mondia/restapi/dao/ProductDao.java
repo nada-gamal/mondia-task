@@ -9,16 +9,16 @@ public interface ProductDao {
 
 	 	public void save(Product p);
 	 	
-	 	public void update(Product p);
+	 	public boolean updateProduct(Product p);
 	 	
 	 	public Product findById(BigDecimal id);
 	 	
 	 	public Product findByName(String name);
 	 	
-	 	public void delete(Product p);
+	 	public boolean delete(BigDecimal id);
 	 	
 	 	public List<Product> findAll();
-	 	
-	 	//public void deleteAll();
+
+		public Product findByIdWithService(BigDecimal id);
 	 	
 }

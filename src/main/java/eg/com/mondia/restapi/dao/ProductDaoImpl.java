@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 
 import eg.com.mondia.restapi.model.Product;
@@ -16,8 +18,22 @@ public class ProductDaoImpl extends AbstractDao<BigDecimal, Product> implements 
 	 		persist(p);
 	 	}
 
-	 	public void update(Product p) {
-	 		update(p);
+	 	public boolean updateProduct(Product p) {
+	 		Product currentProduct = (Product) getByKey(p.getId());
+			
+			if (currentProduct==null) {
+				//System.out.println("Product with id " + id + " not found");
+				return false;
+			}
+
+			currentProduct.setName(p.getName());
+			currentProduct.setDescription(p.getDescription());
+			currentProduct.setMinPrice(p.getMinPrice());
+			currentProduct.setMaxPrice(p.getMaxPrice());
+
+	 		
+	 		update(currentProduct);
+	 		return true;
 	 	}
 
 	 	public Product findById(BigDecimal id) {
@@ -25,8 +41,14 @@ public class ProductDaoImpl extends AbstractDao<BigDecimal, Product> implements 
 	 		return p; 
 	 	}
 
-	 	public void delete(Product p) {
-	 		delete(p);
+	 	public boolean delete(BigDecimal id) {
+	 		Product p = (Product) getByKey(id);
+	 		if (p != null){
+	 			delete(p);
+	 			return true;
+	 		}
+	 		else
+	 			return false;
 	 	}
 
 	 	public List<Product> findAll() {
@@ -37,7 +59,6 @@ public class ProductDaoImpl extends AbstractDao<BigDecimal, Product> implements 
 
 		@Override
 		public Product findByName(String name) {
-			// TODO Auto-generated method stub
 			try{
 	            Product product = (Product) getEntityManager()
 	                    .createQuery("SELECT p FROM Product p WHERE p.name LIKE :productName")
@@ -45,6 +66,25 @@ public class ProductDaoImpl extends AbstractDao<BigDecimal, Product> implements 
 	                    .getSingleResult();
 	             
 	            if(product!=null){
+	            	return product;
+	            }
+	             
+	        }catch(NoResultException ex){
+	            return null;
+	        }
+			return null;
+		}
+
+		@Override
+		public Product findByIdWithService(BigDecimal id) {
+			try{
+	            Product product = (Product) getEntityManager()
+	                    .createQuery("SELECT p FROM Product p JOIN FETCH p.services WHERE p.id = :productId")
+	                    .setParameter("productId", id)
+	                    .getSingleResult();
+	             
+	            if(product!=null){
+	            	product.setServices(product.getServices());
 	            	return product;
 	            }
 	             

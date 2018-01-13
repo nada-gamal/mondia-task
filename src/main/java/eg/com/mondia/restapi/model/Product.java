@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -106,10 +107,10 @@ public class Product implements java.io.Serializable {
 		this.services = services;
 	}
 	
-	/*@Override
+	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + ", minPrice=" + minPrice
 				+ ", maxPrice=" + maxPrice + "]";
-	}*/
+	}
 
 }

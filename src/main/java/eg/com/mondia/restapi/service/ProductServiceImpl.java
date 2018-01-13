@@ -44,16 +44,22 @@ public class ProductServiceImpl implements ProductService{
 		productDao.save(product);
 	}
 
-	public void updateProduct(Product product) {
-		productDao.update(product);
+	public boolean updateProduct(Product product) {
+		return productDao.updateProduct(product);
 	}
 
-	public void deleteProduct(Product product) {
-		productDao.delete(product);
+	public boolean deleteProduct(BigDecimal id) {
+		return productDao.delete(id);
 	}
 
 	public boolean isProductExist(Product product) {
 		return findByName(product.getName())!=null;
+	}
+
+	@Override
+	public Product findByIdWithService(BigDecimal id) {
+		// TODO Auto-generated method stub
+		return productDao.findByIdWithService(id);
 	}
 
 }

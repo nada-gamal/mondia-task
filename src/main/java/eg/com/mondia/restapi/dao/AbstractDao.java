@@ -5,8 +5,10 @@ import java.lang.reflect.ParameterizedType;
  
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
  
-public abstract class AbstractDao<PK extends Serializable, T> {
+public abstract class AbstractDao<PK extends Serializable, T>{
      
     private final Class<T> persistentClass;
      
@@ -35,7 +37,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     }
  
     protected void delete(T entity) {
-        entityManager.remove(entity);
+    		entityManager.remove(entity);
     }
  
 }

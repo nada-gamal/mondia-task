@@ -8,7 +8,7 @@
 	},
 	"item": [
 		{
-			"name": "http://localhost:8080/mondia-restapi/product/43",
+			"name": "Delete Product",
 			"request": {
 				"url": "http://localhost:8080/mondia-restapi/product/43",
 				"method": "DELETE",
@@ -33,7 +33,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/mondia-restapi/product/2",
+			"name": "Get Product by Id",
 			"request": {
 				"url": "http://localhost:8080/mondia-restapi/product/2",
 				"method": "GET",
@@ -50,7 +50,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/mondia-restapi/product/",
+			"name": "Get all products",
 			"request": {
 				"url": "http://localhost:8080/mondia-restapi/product/",
 				"method": "GET",
@@ -67,7 +67,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/mondia-restapi/product/",
+			"name": "Create Product",
 			"request": {
 				"url": "http://localhost:8080/mondia-restapi/product/",
 				"method": "POST",
@@ -92,7 +92,7 @@
 			"response": []
 		},
 		{
-			"name": "http://localhost:8080/mondia-restapi/product/1",
+			"name": "Update Product",
 			"request": {
 				"url": "http://localhost:8080/mondia-restapi/product/1",
 				"method": "PUT",
@@ -110,9 +110,135 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\"name\": \"P1\",\n\"description\": \"Desc1\",\n\"minPrice\": 20.5,\n\"maxPrice\": 30.25\n}"
+					"raw": "{\n\"name\": \"P1\",\n\"description\": \"Desc1\",\n\"minPrice\": 21.5,\n\"maxPrice\": 30.25\n}"
 				},
 				"description": "Update product by Id (ex:1)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get all operators",
+			"request": {
+				"url": "http://localhost:8080/mondia-restapi/loOperator/",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic bW9uZGlhOm1vbmRpYQ==",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get all operators"
+			},
+			"response": []
+		},
+		{
+			"name": "Get operator by Id",
+			"request": {
+				"url": "http://localhost:8080/mondia-restapi/loOperator/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic bW9uZGlhOm1vbmRpYQ==",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get operator by Id (ex: 1)"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Operator",
+			"request": {
+				"url": "http://localhost:8080/mondia-restapi/loOperator/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic bW9uZGlhOm1vbmRpYQ==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"WE\",\n    \"country\": \"Egypt\",\n    \"serviceId\": \"O\",\n    \"packageId\": \"O\"\n}"
+				},
+				"description": "Create Operator"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Service by Id",
+			"request": {
+				"url": "http://localhost:8080/mondia-restapi/service/1",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic bW9uZGlhOm1vbmRpYQ==",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": "Get Service by Id"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Service",
+			"request": {
+				"url": "http://localhost:8080/mondia-restapi/service/",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic bW9uZGlhOm1vbmRpYQ==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Service2\",\n    \"type\": \"Subscription\",\n    \"operatorId\": 2,\n    \"productId\": 1,\n    \"operatorServiceId\": null,\n    \"operatorPackageId\": 1234\n}"
+				},
+				"description": "Create Service"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Operator",
+			"request": {
+				"url": "http://localhost:8080/mondia-restapi/loOperator/4",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic bW9uZGlhOm1vbmRpYQ==",
+						"description": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"WE\",\n    \"country\": \"Egypt\",\n    \"serviceId\": \"M\",\n    \"packageId\": \"O\"\n}"
+				},
+				"description": "Update operator"
 			},
 			"response": []
 		}
